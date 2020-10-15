@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { endpoint } from '/Users/micae/weather-app-react/src/endpoint';
+import { endpoint } from '../../endpoint';
 import Results from '../Results/Results';
 import { Wrapper, FormWrapper, ResultsWrapper } from './Search.style';
 
@@ -73,7 +73,7 @@ const Search = () => {
             <header>
                 <h1>Weather finder</h1>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="city-input">Ingresa una ciudad</label>
+                    <label htmlFor="city-input">Ingresa una ciudad para conocer su pronóstico</label>
                     <FormWrapper>
                         <input
                             placeholder="enter a city"

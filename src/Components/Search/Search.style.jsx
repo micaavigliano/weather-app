@@ -16,6 +16,10 @@ export const Wrapper = styled.div`
         font-weight: lighter;
         color: red;
     }
+    label{
+        font-size: 1.5rem;
+        font-weight: bolder;
+    }
     
 `
 
@@ -24,6 +28,7 @@ export const FormWrapper = styled.div`
     border-bottom: 2px solid black;
     width: 80%;
     margin: auto;
+    margin-top: 2%;
     button {
         border: none;
         background: transparent;

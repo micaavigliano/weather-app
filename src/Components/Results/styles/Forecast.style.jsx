@@ -5,6 +5,10 @@ export const ForecastWrapper = styled.div`
     flex-direction: row;
     padding: auto;
     margin: auto;
+    header{
+        margin-top: 1%;
+        height: 1%;
+    }
 `
 export const ForecastMain = styled.main`
     background-color: red;
