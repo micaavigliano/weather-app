@@ -58,7 +58,6 @@ const Search = () => {
                 temp_min: data.main.temp_min,
                 temp_max: data.main.temp_max,
                 feels_like: data.main.feels_like,
-                desc: data.weather[0].description,
                 city: data.name,
                 icon: data.weather[0].icon,
                 title: data.weather[0].main,

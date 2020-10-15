@@ -48,7 +48,6 @@ export const FormWrapper = styled.div`
 `
 
 export const ResultsWrapper = styled.main`
-    background-color: gray;
     width: 80vh;
     margin: auto;
     padding: auto;
