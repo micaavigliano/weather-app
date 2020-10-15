@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { endpoint } from '/Users/micae/weather-app-react/src/endpoint';
 import Results from '../Results/Results';
-import { Wrapper } from './Search.style';
+import { Wrapper, FormWrapper, ResultsWrapper } from './Search.style';
 
 const Search = () => {
     const API_KEY = "efd8d6ced2474250ccdd802afc57c26e";
@@ -18,7 +18,6 @@ const Search = () => {
         code: null
     })
     const [validQuery, setValidQuery] = useState(false);
-    const [forecast, setForecast] = useState({});
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -76,29 +75,46 @@ const Search = () => {
                 <h1>Weather finder</h1>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="city-input">Ingresa una ciudad</label>
-                    <input
-                        placeholder="enter a city"
-                        className="city-search"
-                        id="city-input"
-                        onChange={updateSearchQuery}
-                    />
-                    <button
-                        type="submit"
-                        className="material-icons"
-                        aria-label="Click here to search the weather"
-                        onClick={getWeatherData}
-                    >
-                        search
-                    </button>
+                    <FormWrapper>
+                        <input
+                            placeholder="enter a city"
+                            className="city-search"
+                            id="city-input"
+                            onChange={updateSearchQuery}
+                            aria-controls="dataResults"
+                        />
+                        <button
+                            type="submit"
+                            className="material-icons"
+                            aria-label="Click here to search the weather"
+                            onClick={getWeatherData}
+                        >
+                            search
+                        </button>
+                    </FormWrapper>
                 </form>
                 <p>{!validQuery ? '' : 'Invalid city name.'}</p>
             </header>
-            <main>
-                <p>{query === "" ? "no hay busqueda" : <Results info={weather}/>}</p>
-                {/* {
-                    Object.values(weather).map(value=><Results key={value} info={weather}/>)
-                } */}
-            </main>
+            <ResultsWrapper>
+                <section>
+                    {weather.temp ? (
+                        <>  
+                            <p 
+                                id="dataResults" 
+                                aria-live="polite"
+                                className="hidden"
+                            >
+                                Se encontró un resultado para tu búsqueda
+                            </p>
+                            <Results info={weather} />
+                        </>
+                    ) : (
+                        <p>no hay búsquedas</p>
+                    )
+                    }
+                </section>
+               
+            </ResultsWrapper>
         </Wrapper>
     )
 }
