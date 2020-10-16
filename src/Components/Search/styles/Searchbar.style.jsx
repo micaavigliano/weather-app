@@ -1,28 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-    /* height: 40vh; */
-    width: 100vh; 
-    border: 2px solid black;
-    text-align: center;
-    margin: auto;
-    padding: auto;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    border-radius: 40px;
-    h1 {
-        padding-top: 3%;
-        font-size: 5.5rem;
-        font-weight: lighter;
-        color: red;
-    }
-    label{
-        font-size: 1.5rem;
-        font-weight: bolder;
-    }
-    
-`
-
 export const FormWrapper = styled.div`
     display: flex;
     border-bottom: 2px solid black;
@@ -50,13 +27,4 @@ export const FormWrapper = styled.div`
             outline: 2px solid purple;
         }
     }
-`
-
-export const ResultsWrapper = styled.main`
-    width: 80vh;
-    margin: auto;
-    padding: auto;
-    border: 2px solid transparent;
-    margin-bottom: 2%;
-    border-radius: 10px;
 `

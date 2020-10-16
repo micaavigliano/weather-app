@@ -22,10 +22,6 @@ const Results = (props) => {
                     <p>Temperatura actual: {Math.round(temp)} <sup aria-hidden="true">°c</sup></p>
                     <p>Mínima: {Math.round(temp_min)} <sup aria-hidden="true">°c</sup></p>
                     <p>Máxima: {Math.round(temp_max)} <sup aria-hidden="true">°c</sup></p>
-                    {/* <div className="temp-min-max">
-                        <p>Min: {Math.round(temp_min)} <sup>°c</sup> <span aria-hidden="true">|</span></p>
-                        <p>Max: {Math.round(temp_max)} <sup>°c</sup></p>
-                    </div> */}
                     <p>Sensación térmica: {Math.round(feels_like)} <sup aria-hidden="true">°c</sup></p>
                 </div>
             </Data>

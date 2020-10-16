@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const MainData = styled.div`
     border: 2px solid black;
     padding-bottom: 2%;
+    width: 40%;
+    border-radius: 20px;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
     .link-forecast{
         color: blue;
         cursor: pointer;
@@ -10,10 +15,6 @@ export const MainData = styled.div`
         padding: auto;
         margin: auto;
         padding: 2% 0 2% 0;
-    }
-
-    .link-forecast:focus{
-        outline: 2px border purple;
     }
 `
 
@@ -24,7 +25,7 @@ export const Data = styled.div`
     margin: auto;
     .main-weather{
         margin-right: 10%;
-        margin-left: 30%;
+        margin-left: 2%;
     }
     .weather-info{
         margin-top: 2%;

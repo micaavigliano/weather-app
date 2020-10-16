@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import Searchbar from './Searchbar'
 import { endpoint } from '../../endpoint';
 import Results from '../Results/Results';
 import BuenosAires from '../Results/BuenosAires';
-import { Wrapper, FormWrapper, ResultsWrapper } from './Search.style';
+import { Wrapper, SectionResults, ResultsWrapper } from './styles/WeatherCont.style';
+//import { useLocalState } from '././../../Hooks/useLocalStorage'
 
 const Search = () => {
     const API_KEY = "efd8d6ced2474250ccdd802afc57c26e";
@@ -95,35 +97,12 @@ const Search = () => {
 
     return (
         <Wrapper>
-            <header>
-                <h1>Weather finder</h1>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="city-input">Ingresa una ciudad para conocer su pronóstico</label>
-                    <FormWrapper>
-                        <input
-                            placeholder="enter a city"
-                            className="city-search"
-                            id="city-input"
-                            onChange={updateSearchQuery}
-                            aria-controls="dataResults"
-                        />
-                        <button
-                            type="submit"
-                            className="material-icons"
-                            aria-label="Click here to search the weather"
-                            onClick={getWeatherData}
-                        >
-                            search
-                        </button>
-                    </FormWrapper>
-                </form>
-                <p>{!validQuery ? '' : 'Invalid city name.'}</p>
-            </header>
+            <Searchbar handleSubmit={handleSubmit} updateSearchQuery={updateSearchQuery} getWeatherData={getWeatherData} query={validQuery}/>
             <ResultsWrapper>
-                <section>
+                <SectionResults>
                     <BuenosAires info={ba} />
                     {weather.length > 0 && weather.map(value => <Results key={value} info={value}/>)}
-                </section>   
+                </SectionResults>   
             </ResultsWrapper>
         </Wrapper>
     )
