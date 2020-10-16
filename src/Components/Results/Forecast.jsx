@@ -17,6 +17,7 @@ const Forecast = () => {
     const { city } = useParams();
     //seteo los estados
     const [forecast, setForecast] = useState();
+    const [temp, setTemp] = useState([])
 
 
     //utilizo useEffect para poder tener los datos directamente cuando se carga el componente. Usé una función asincrónica para que el componente se cargue cuando esta la información
@@ -27,16 +28,43 @@ const Forecast = () => {
                     endpoint.forecast(city, API_KEY)
                 );
                 const data = await res.json();
-                console.log(data);
+                //console.log(data);
                 setForecast(data);
                 document.title = `Pronóstico extendido - ${data.city.name}`
             } catch(err) {
                 console.log(err)
             }
         } 
-        getForecast()
+        getForecast();
     }, [city]);
 
+    useEffect(() => {
+        const formatTemperature = () => {
+            if(!forecast) return;
+            let data = forecast.list?.reduce((acc, value) => {
+                acc[moment(value.dt_txt).format("dddd")] = acc[moment(value.dt_txt).format("dddd")] === undefined ? ({
+                    [moment(value.dt_txt).format("dddd")] : 
+                    {
+                        temp: value.main.temp, 
+                        img: value.weather[0].icon,
+                        day: value.dt_txt,
+                        weather: value.weather[0].main
+                    }}) : ({
+                        temp: value.main.temp,
+                        img: value.weather[0].icon,
+                        day: value.dt_txt,
+                        weather: value.weather[0].main
+                })
+                return acc;
+            }, {})
+            setTemp(data);
+            return data;
+        }
+        formatTemperature()
+    }, [forecast]);
+
+    
+    
 
     return (
         <>
@@ -44,24 +72,25 @@ const Forecast = () => {
                 forecast ? (
                     <ForecastWrapper>
                         <header>
-                            <a
-                                href="/"
+                            <div
+                                role="link"
+                                tabindex="0"
+                                className="link-to-home"
                                 onClick={() => history.push("/")}
                             >
                                 Volver al inicio
-                            </a>
+                            </div>
                         </header>
                         <ForecastMain>
                             <h1 role="log" aria-live="polite">Pronóstico extendido para: {forecast.city.name}</h1>
                             <ForecastData>
                             {
-                                forecast.list.map((value) => (
+                                Object.values(temp).map(value => (
                                     <section>
-                                        <p>{moment(value.dt_txt).format("dddd")}</p>
-                                        <p>{moment(value.dt_txt).format("LT")}</p>
-                                        <p>{value.weather[0].main}</p>
-                                        <p>{Math.round(value.main.temp)}<sup aria-hidden="true">°c</sup></p>
-                                        <img src={`http://openweathermap.org/img/wn/${value.weather[0].icon}@2x.png`} alt="" />
+                                        <p>{moment(value.day).format("dddd")}</p>
+                                        <p>{Math.round(value.temp)}<sup aria-hidden="true">°c</sup></p>
+                                        <p>{value.weather}</p>
+                                        <img src={`http://openweathermap.org/img/wn/${value.img}@2x.png`} alt="" />
                                     </section>
                                 ))
                             }
