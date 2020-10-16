@@ -68,6 +68,7 @@ const Search = () => {
                     title: data.weather[0].main,
                     code: data.code
                 })
+                document.title = 'Weather App';
             } catch(error) {
                 alert('error');
             }
