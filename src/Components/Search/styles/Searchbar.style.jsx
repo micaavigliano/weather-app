@@ -9,12 +9,11 @@ export const FormWrapper = styled.div`
     button {
         border: none;
         background: transparent;
-        color: red;
         cursor: pointer;
         &:focus{
-            outline: 2px solid purple;
+            outline: 2px solid white;
         }
-    }
+    }   
     input {
         background: transparent;
         border: none;
@@ -24,7 +23,21 @@ export const FormWrapper = styled.div`
         color: black;
         font-size: 1.2rem;
         &:focus{
-            outline: 2px solid purple;
+            outline: 2px solid white;
         }
+        &::placeholder{
+            color: black;
+        }
+    }
+`
+
+export const Alert = styled.div`
+    background-color: white;
+    width: 30%;
+    padding: auto;
+    margin: auto;
+    p {
+        color: red;
+        font-size: 1.4rem;
     }
 `

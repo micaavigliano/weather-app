@@ -11,8 +11,9 @@ export const ForecastWrapper = styled.div`
         height: 1%;
         width: 50%;
         a {
-            a:focus{
-                outline: 2px solid red;
+            color: white;
+            &:focus{
+                outline: 2px solid white;
             }
         }
     }
@@ -29,5 +30,10 @@ export const ForecastData = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border-radius: 10px;
+    section {
+        border: 1px solid purple;
+        border-radius: 10px;
+        text-align: center;
+        background: rgb(249,169,237);
+    }
 `

@@ -4,11 +4,8 @@ export const SectionResults = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: grey;
     position: relative;
-    width: 95%;
-    /* left: -170px; */
-    
+    width: 95%;    
 `
 
 export const Wrapper = styled.div`

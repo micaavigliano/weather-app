@@ -1,7 +1,8 @@
 import React from 'react';
-import { FormWrapper } from './styles/Searchbar.style';
+import { FormWrapper, Alert } from './styles/Searchbar.style';
 
 const Searchbar = ({ handleSubmit, updateSearchQuery, getWeatherData, query }) => {
+    
     return (
         <>
             <header>
@@ -26,7 +27,13 @@ const Searchbar = ({ handleSubmit, updateSearchQuery, getWeatherData, query }) =
                         </button>
                     </FormWrapper>
                 </form>
-                <p>{!query ? '' : 'Invalid city name.'}</p>
+                <Alert>
+                <p 
+                    className="alert"
+                    role="log"
+                    aria-live="polite"
+                >{!query ? '' : 'Nombre inválido. Solo se pueden utilizar carácteres'}</p>
+                </Alert>
             </header>
         </>
     )

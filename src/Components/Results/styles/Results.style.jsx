@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
 export const MainData = styled.div`
-    border: 2px solid black;
+    border: 2px solid pink;
+    -webkit-box-shadow: 14px 12px 52px 10px rgba(189,147,189,1);
+    -moz-box-shadow: 14px 12px 52px 10px rgba(189,147,189,1);
+    box-shadow: 14px 12px 52px 10px rgba(189,147,189,1);
     padding-bottom: 2%;
     width: 40%;
     border-radius: 20px;
     margin-top: 2%;
     margin-left: 2%;
     margin-right: 2%;
+    background: rgb(249,169,237);
     .link-forecast{
         color: blue;
         cursor: pointer;
@@ -29,5 +33,10 @@ export const Data = styled.div`
     }
     .weather-info{
         margin-top: 2%;
+    }
+`
+export const Link = styled.div`
+    &:focus{
+        outline: 2px solid purple;
     }
 `

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Searchbar from './Searchbar'
-import { endpoint } from '../../endpoint';
+//componentes
+import Searchbar from './Searchbar';
 import Results from '../Results/Results';
 import BuenosAires from '../Results/BuenosAires';
+//endpoint
+import { endpoint } from '../../endpoint';
+//estilos
 import { Wrapper, SectionResults, ResultsWrapper } from './styles/WeatherCont.style';
-//import { useLocalState } from '././../../Hooks/useLocalStorage'
 
 const Search = () => {
+    //pseteo la api key para poder llamarla. Podría haberla guardado en un archivo .env.
     const API_KEY = "efd8d6ced2474250ccdd802afc57c26e";
+    //creo los estados
     const [query, setQuery] = useState("");
     const [weather, setWeather] = useState([]);
     const [validQuery, setValidQuery] = useState(false);
@@ -23,13 +27,13 @@ const Search = () => {
         code: null
     })
 
+    //creo la función handleSubmit para pasarsela al evento onSubmit en el form, para que: 1) no se actualice la página, y 2)para que luego de buscar la query, el input quede vacío y se pueda realizar otra búsqueda
     const handleSubmit = (event) => {
         event.preventDefault();
         event.currentTarget.reset();
-
-        //addWeather(value)
     }
 
+    //creo la fnción updateSearchQuery para poder pasarsela al evento onChange. Lo que hace esta función es, cada vez que el input recibe un string, corre la validación y si es cualquier caracter que no sea de la "a" o "A" a la "z" o "Z". Si la validación es 'false' se muestra un cartel con el error
     const updateSearchQuery = (event) => {
         let valueQuery = event.target.value;
         let valid = validation(valueQuery);
@@ -46,6 +50,8 @@ const Search = () => {
         let regex = /[a-zA-Z]/;
         return regex.test(query)
     }
+
+    //utilizo useEffect para hacer la llamada al endpoint buenosAires para poder utilizar los datos en el elemento estático que va a recibir los datos de dicha ciudad. Uso particularmente useSEffect porque son datos que quiero ver cuando el componente cargue y no cuando realice la llamada. El uso de la async/await es para poder esperar la data de la api, de otro modo me devolvería el componente vacío
 
     useEffect(() => {
         const getBA = async () => {
@@ -67,7 +73,9 @@ const Search = () => {
             }
         }
         getBA()
-    }, [])
+    }, []);
+
+    // acá declaro una función getWeatherData. Esta función me va a permitir recibir los datos de la ciudad consultada en el input cuando presione el botón 'search'. Por la misma razón que arriba, utilizo una llamada asincrónica 
 
     const getWeatherData = async () => {
 
@@ -97,7 +105,7 @@ const Search = () => {
 
     return (
         <Wrapper>
-            <Searchbar handleSubmit={handleSubmit} updateSearchQuery={updateSearchQuery} getWeatherData={getWeatherData} query={validQuery}/>
+            <Searchbar handleSubmit={handleSubmit} updateSearchQuery={updateSearchQuery} getWeatherData={getWeatherData} query={validQuery} setQuery={setQuery}/>
             <ResultsWrapper>
                 <SectionResults>
                     <BuenosAires info={ba} />
