@@ -73,17 +73,19 @@ const Search = () => {
             const url = await endpoint.cityWeather(query, API_KEY);
             const data = await (await fetch(url)).json();
             setWeather(
-                ...weather,
-                {
-                    temp: data.main.temp,
-                    temp_min: data.main.temp_min,
-                    temp_max: data.main.temp_max,
-                    feels_like: data.main.feels_like,
-                    city: data.name,
-                    icon: data.weather[0].icon,
-                    title: data.weather[0].main,
-                    code: data.code
-                }
+                [
+                    ...weather,
+                    {
+                        temp: data.main.temp,
+                        temp_min: data.main.temp_min,
+                        temp_max: data.main.temp_max,
+                        feels_like: data.main.feels_like,
+                        city: data.name,
+                        icon: data.weather[0].icon,
+                        title: data.weather[0].main,
+                        code: data.code
+                    }
+                ]
             )
             
         } catch(error) {
